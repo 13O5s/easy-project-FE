@@ -1,0 +1,157 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Georgia, Times, "Times New Roman", serif;
+}
+p{
+    margin: 15px 15px;
+}
+#outline{
+    border: 5px solid;
+    width: 50%;
+    height: 580px;
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hide{
+    display:none !important;
+}
+
+/* header tag */
+header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+main h3{
+    width: 100%;
+    text-align: center;
+}
+    /* all button */
+.btn{
+    margin: 10px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #52865a;
+    border-radius: 5px;
+    border: 0;
+    padding: 20px;
+}
+.btn:hover{
+    background-color:#2a8d12;
+}
+    /* timer */
+.timer-container{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+#timer{
+    margin-left: 10px;
+    font-size: 24px;
+}
+
+/* pre-quizz */
+main{
+    height: 100%;
+    margin: 50px auto 0 auto;
+    max-width: 400px;
+}
+#pre-quizz
+{
+    /* margin: 20px; */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+#pre-quizz h1{
+    color: green;
+    margin-bottom: 20px;
+}
+/* quizz */
+#question{
+    border-bottom: 1px solid;
+    padding: 10px;
+}
+.correct{
+    background-color: #43e919;
+}
+.wrong{
+    background-color: red;
+}
+.banClick{
+    cursor: not-allowed;
+    pointer-events: none;
+}
+.shake{
+    animation: shake 0.5s;
+}
+
+/* post-quizz */
+#post-quizz .name-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+#score{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+ #score-final{
+    font-size: 20px;
+}
+.name-container input{
+    border: 1px solid;
+    font-size: 18px;
+    padding: 10px;
+    height: 80%;
+}
+
+
+
+/* high-score html */
+.navigate-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+/* responsive */
+@media screen and (max-width: 768px) {
+    #outline{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 575px){
+    #outline{
+        width: 90%;
+    }
+    main{
+        max-width: 80%;
+    }
+
+}
+
+@keyframes shake{
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}

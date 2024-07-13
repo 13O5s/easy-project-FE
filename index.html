@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizz with Timer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="outline">
+    <header>
+        <div class="high-score-container">
+            <a href="high-score.html" id="high-scores-link">
+                <button class="btn" id="high-scores-btn">View high score</button>
+            </a>
+        </div>
+        <div class="timer-container">
+            <p>Time: <span id="timer">0</span></p>
+        </div>
+    </header>
+    <main>
+        <section id="pre-quizz" class="">
+            <h1>GeeksforGeeks</h1>
+            <h2>Coding Quiz Challenge</h2>
+            <p>Try to answer the following
+                code-related questions with
+                in the time limit. Keep in
+                mind that incorrect answers
+                will penalize your score/time
+                by ten seconds!</p>
+            <button class="btn">Start Quizz</button>
+        </section>
+        <section id="quizz" class="hide">
+            <h3 id="question"></h3>
+            <ol class="answer-option">
+            </ol>
+        </section>
+        <section id="post-quizz" class="hide">
+            <div>
+                <h2>All done</h2>
+                <p id="score">Your final score: <span id="score-final">12</span></p>
+                <div class="name-container">
+                    <p>Please enter your name: </p>
+                    <input type="text" id="name=">
+                </div>
+            </div>
+            <button class="btn">Submit</button>
+        </section>
+    </main>
+  </div>  
+  <script src="script.js"></script>
+</body>
+</html>
