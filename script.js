@@ -31,11 +31,15 @@ const quizz = document.querySelector("#quizz");
 const question = document.querySelector("#question");
 const options = document.querySelector(".answer-option");
 const postQuizz = document.querySelector("#post-quizz");
+const minusSpan = document.querySelector("#minus-time");
+let nameInput = document.querySelector("#name");
+let submit = document.querySelector("#submitBtn");
 let questionJson;
 // Value
 let timeEl;
 let currentQuestion = 0;
-let time ;
+let time;
+let minusTime = 10;
 
 fetchQuestionAPI('question.json')
     .then(data => {
@@ -62,7 +66,7 @@ function quizzStart(){
 function setTimeCountDown()
 {
     if(time <0)
-        time = 0;
+        quizEnd();
     timer.innerText = time;
     time--;
 }
@@ -81,20 +85,24 @@ function getQuestion()
     });
 }
 function choiceChecked(){
-    console.log(this.innerText);
     if(this.innerText == questionJson[currentQuestion].answer)
     {
         this.classList.add("correct");
     }
     else{
         this.classList.add("wrong");
+        time = time-minusTime;
+        if(time < 0)
+            time = 0;
+        timer.innerText = time;
+        minusSpan.innerText = minusTime;
+        minusSpan.classList.add("hideTime");
     } 
     let choiceBtns = document.querySelectorAll(".choice");
     choiceBtns.forEach(choice => {
         choice.classList.add("banClick");
         if(choice.innerText == questionJson[currentQuestion].answer && choice.innerText != this.innerText)
             choice.classList.add("correct", "shake");
-
     })
     clearInterval(timeEl);
     timeEl =null;
@@ -103,9 +111,43 @@ function choiceChecked(){
             setTimeCountDown();
         }, 1000);
         currentQuestion++;
-        getQuestion();
-    },1000);
+        if (
+            currentQuestion ===
+            questionJson.length
+        ) {
+            quizEnd();
+        } else {
+            getQuestion();
+        }
+    },500);
 }
 
+function quizEnd(){ 
+    clearInterval(timeEl);
+    quizz.classList.add("hide");
+    postQuizz.classList.remove("hide");
+    let score = Math.floor((time/questionJson.length)*100);
+    document.querySelector("#score-final").innerText = score;
+}
 
-    
+function checkEnter(e){
+    if(e.key === "Enter"){
+        saveHighScore();
+        alert("Your socre has been saved successfully");
+    }
+}
+
+function saveHighScore(){
+    let score = Math.floor((time/questionJson.length)*100);
+    let name = nameInput.value.trim();
+    if(name !== ""){
+        let scores = JSON.parse(localStorage.getItem("highScores")) || [];
+        scores.push({name, score});
+        scores.sort((a, b) => b.score - a.score);
+        scores = scores.slice(0, 10);
+        localStorage.setItem("highScores", JSON.stringify(scores));
+        alert("Your socre has been saved successfully");
+    }
+}
+nameInput.onkeyup = checkEnter;
+submit.addEventListener("click", saveHighScore);
